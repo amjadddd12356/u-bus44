@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>U BUS</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <div class="hero_area">
+    <!-- header section starts -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" alt="">
+            <span>
+             U BUS
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="s-1"> </span>
+            <span class="s-2"> </span>
+            <span class="s-3"> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="TIME BUS INFORMATION .html"> BUS TIME INFORMATION </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="INFORMATION OF BUS .html"> BUS INFORMATION  </a>
+                </li>
+                
+                <li class="nav-item">
+                  <a style="background-color: red;" class="nav-link" href="Log out.html">Log out </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+</head>
+<body>
+    <div class="dropdown-container">
+        <select id="areaDropdown" onchange="focusArea(this.value)">
+            <option value="">اختر منطقة</option>
+            <option value="1">المزة</option>
+            <option value="2">المالكي</option>
+            <option value="3">شارع بغداد</option>
+            <option value="4">مشروع دمر</option>
+            <option value="5">ضاحية قدسيا</option>
+            <option value="6">العدوي</option>
+            <option value="7">جرمانا</option>
+            <option value="8">التل</option>
+            <option value="9">جمرايا</option>
+            <option value="10">جسر الأبيض</option>
+            <option value="11">جديدة عرطوز</option>
+            <option value="12">الزاهرة</option>
+            <option value="13">حاميش</option>
+            <option value="14">قرى الأسد</option>
+            <option value="15">قدسيا</option>
+            <option value="16">ضاحية الأسد</option>
+            <option value="17">مساكن برزة</option>
+            <option value="18">مزة شيخ سعد</option>
+            <option value="19">المهاجرين</option>
+            <option value="20">معضمية </option>
+            <option value="21">ميسات</option>
+        </select>
+    </div>
+    <div id="map"></div>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 900px;
+            width: 100%;
+            margin: auto;
+            position: relative;
+            z-index: 1;
+        }
+        .dropdown-container {
+            text-align: center;
+            margin: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        .dropdown-container select {
+            padding: 10px;
+            background-color: #002547;
+            border-radius: 20px;
+            color: #d8d4d4;
+        }
+        .footer {
+            background-color: #002547;
+            text-align: center;
+            padding: 10px;
+            color: #d8d4d4;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 3;
+        }
+    </style>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+    // Initialize the map and set its view
+    var map = L.map('map').setView([33.5138, 36.2765], 12); // إحداثيات وسط دمشق
+
+    // Add a tile layer to the map
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Define the coordinates and zoom levels for the areas
+    var areas = {
+        1: {coords: [33.5146, 36.2745], zoom: 14}, // المزة
+        2: {coords: [33.5260, 36.2900], zoom: 14}, // المالكي
+        3: {coords: [33.5226, 36.3010], zoom: 14}, // شارع بغداد
+        4: {coords: [33.5036, 36.2355], zoom: 14}, // مشروع دمر
+        5: {coords: [33.5534, 36.2197], zoom: 14}, // ضاحية قدسيا
+        6: {coords: [33.5287, 36.3246], zoom: 14}, // العدوي
+        7: {coords: [33.4858, 36.3455], zoom: 14}, // جرمانا
+        8: {coords: [33.6077, 36.3107], zoom: 14}, // التل
+        9: {coords: [33.5624, 36.2305], zoom: 14}, // جمرايا
+        10: {coords: [33.5195, 36.2875], zoom: 14}, // جسر الأبيض
+        11: {coords: [33.4308, 36.2487], zoom: 14}, // جديدة عرطوز
+        12: {coords: [33.4852, 36.3029], zoom: 14}, // الزاهرة
+        13: {coords: [33.5593, 36.3122], zoom: 14}, // حاميش
+        14: {coords: [33.6323, 36.1887], zoom: 14}, // قرى الأسد
+        15: {coords: [33.5540, 36.2116], zoom: 14}, // قدسيا
+        16: {coords: [33.5476, 36.2698], zoom: 14}, // ضاحية الأسد
+        17: {coords: [33.5395, 36.3225], zoom: 14}, // مساكن برزة
+        18: {coords: [33.5110, 36.2698], zoom: 14}, // مزة شيخ سعد
+        19: {coords: [33.5321, 36.2766], zoom: 14}, // المهاجرين
+        20: {coords: [33.4625, 36.2088], zoom: 14}, // معضمية 
+        21: {coords: [33.5316, 36.2920], zoom: 14}  // ميسات
+    };
+
+    // Function to focus on a specific area
+    function focusArea(areaNumber) {
+        if (areaNumber) {
+            var area = areas[areaNumber];
+            map.setView(area.coords, area.zoom);
+        }
+    }
+    </script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <div class="footer">
+      &copy; 2024 U BUS. All Rights Reserved.
+  </div>
+</body>
+</html>

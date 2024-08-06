@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>U BUS</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      /*overflow-x: hidden; /* Prevent horizontal scroll */
+      background: linear-gradient(135deg, #00407d, #294ec5); /* Gradient background */
+      height: 100vh;
+     /* display: flex;*/
+      justify-content: center;
+      align-items: center;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1; /* Ensure it is behind all content */
+    }
+    .footer {
+            background-color: #002547;
+            text-align: center;
+            padding: 10px;
+            color: #d8d4d4;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+    
+
+    #driver-names {
+      margin: 20px auto;
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #areaSelect {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      /*border: 2px solid #0e394f;*/
+      background-color: #002547;
+      color: white;
+      
+
+    }
+    @media screen and (max-width: 600px) {
+        select {
+            width: 90%;
+        }
+        table {
+            width: 90%;
+            
+        }
+        .centered {
+            height: auto;
+            padding: 20px 0;
+        }
+    }
+
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 80%;
+      background-color: rgba(0, 0, 0, 0.2); /* Transparent background for readability */
+    }
+
+    th, td {
+      border: 2px solid #d8d4d4;
+      padding: 10px;
+      color: white;
+    }
+
+    th {
+      background-color: rgba(0, 0, 0, 0.4); /* Transparent background for readability */
+      color: #d8d4d4;
+    }
+  </style>
+</head>
+
+<body class="sub_page">
+  <div id="particles-js"></div>
+  <div class="content">
+    <div class="hero_area">
+      <!-- header section starts -->
+      <header class="header_section">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/logo.png" alt="">
+              <span>U BUS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="s-1"></span>
+              <span class="s-2"></span>
+              <span class="s-3"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="TIME BUS INFORMATION .html">BUS TIME INFORMATION</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="INFORMATION OF BUS .html">BUS INFORMATION</a>
+                  </li>
+                  <li class="nav-item">
+                    <a style="background-color: red;" class="nav-link" href="Log out.html">Log out</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- end header section -->
+
+    </div>
+
+    <div id="driver-names">
+      <select id="areaSelect" onchange="showDrivers(this.value)">
+        <option value="">اختر منطقة</option>
+        <option value="التل">التل</option>
+        <option value="جرمانا">جرمانا</option>
+        <option value="العدوي">العدوي</option>
+        <option value="جديدة عرطوز">جديدة عرطوز</option>
+        <option value="جسر الأبيض">جسر الأبيض</option>
+        <option value="جمرايا">جمرايا</option>
+        <option value="حاميش">حاميش</option>
+        <option value="زاهرة">زاهرة</option>
+        <option value="شارع بغداد">شارع بغداد</option>
+        <option value="ضاحية الأسد">ضاحية الأسد</option>
+        <option value="قدسيا">قدسيا</option>
+        <option value="قرى الأسد">قرى الأسد</option>
+        <option value="مالكي">مالكي</option>
+        <option value="مزة شيخ سعد">مزة شيخ سعد</option>
+        <option value="مساكن برزة">مساكن برزة</option>
+        <option value="مشروع دمر">مشروع دمر</option>
+        <option value="معضمية">معضمية</option>
+        <option value="مهاجرين">مهاجرين</option>
+        <option value="ميسات">ميسات</option>
+        <option value="مزة">مزة</option>
+        <!-- أضف المزيد من المناطق حسب الحاجة -->
+      </select>
+    </div>
+
+    <div id="drivers"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // Initialize particles.js
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 6,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 400,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 0.8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // JavaScript to handle driver data display
+    const drivers = {
+      'التل': [
+        { name: 'محمد', plate: '654321', phone: '0933445566' },
+        { name: 'علي', plate: '789123', phone: '0965112233' }
+      ],
+      'جرمانا': [
+        { name: 'أحمد', plate: '456789', phone: '0933112233' },
+        { name: 'خالد', plate: '321654', phone: '0965334455' }
+      ],
+      'العدوي': [
+        { name: 'رامي', plate: '987654', phone: '0933778899' },
+        { name: 'سامي', plate: '321987', phone: '0965667788' }
+      ],
+      'جديدة عرطوز': [
+        { name: 'ماهر', plate: '123456', phone: '0933998877' },
+        { name: 'نزار', plate: '321468', phone: '0965665544' }
+      ],
+      'جسر الأبيض': [
+        { name: 'طارق', plate: '234567', phone: '0933332211' },
+        { name: 'فادي', plate: '321579', phone: '0965655443' }
+      ],
+      'جمرايا': [
+        { name: 'عماد', plate: '345678', phone: '0933999951' },
+        { name: 'هيثم', plate: '321690', phone: '0965777842' }
+      ],
+      'حاميش': [
+        { name: 'وائل', plate: '456789', phone: '0933598764' },
+        { name: 'نبيل', plate: '321801', phone: '0965442312' }
+      ],
+      'زاهرة': [
+        { name: 'رامي', plate: '567890', phone: '0933346859' },
+        { name: 'سعيد', plate: '321912', phone: '0965482523' }
+      ],
+      'شارع بغداد': [
+        { name: 'مازن', plate: '678901', phone: '0933265578' },
+        { name: 'زياد', plate: '321023', phone: '0965666897' }
+      ],
+      'ضاحية الأسد': [
+        { name: 'لؤي', plate: '789012', phone: '0933265897' },
+        { name: 'رامز', plate: '321134', phone: '0965872300' }
+      ],
+      'قدسيا': [
+        { name: 'خالد', plate: '890123', phone: '0933005648' },
+        { name: 'جهاد', plate: '321245', phone: '0965003258' }
+      ],
+      'قرى الأسد': [
+        { name: 'عدنان', plate: '901234', phone: '0933568014' },
+        { name: 'ثائر', plate: '901234', phone: '0965223404' }
+      ],
+      'مالكي': [
+        { name: 'باسل', plate: '012345', phone: '0933032108' },
+        { name: 'فراس', plate: '321467', phone: '0965894021' }
+      ],
+      'مزة شيخ سعد': [
+        { name: 'عمر', plate: '123567', phone: '0933659012' },
+        { name: 'كريم', plate: '321578', phone: '0965487032' }
+      ],
+      'مساكن برزة': [
+        { name: 'مراد', plate: '234678', phone: '0963326570' },
+        { name: 'معتز', plate: '321689', phone: '0965480320' }
+      ],
+      'مشروع دمر': [
+        { name: 'أحمد', plate: '345789', phone: '0933996802' },
+        { name: 'خالد', plate: '321790', phone: '0965264204' }
+      ],
+      'معضمية': [
+        { name: 'عاطف', plate: '456890', phone: '0933202010' },
+        { name: 'سهيل', plate: '321801', phone: '0965881886' }
+      ],
+      'مهاجرين': [
+        { name: 'رائد', plate: '567901', phone: '0933204581' },
+        { name: 'علاء', plate: '321912', phone: '0965412011' }
+      ],
+      'ميسات': [
+        { name: 'طلال', plate: '678012', phone: '0933982012' },
+        { name: 'نادر', plate: '321023', phone: '0965872013' }
+      ],
+      'مزة': [
+        { name: 'شادي', plate: '789123', phone: '0502345678' },
+        { name: 'فؤاد', plate: '321134', phone: '0504567890' }
+      ]
+    };
+
+    function showDrivers(line) {
+      const driverData = drivers[line];
+      if (!driverData) {
+        document.getElementById('drivers').innerHTML = '';
+        return;
+      }
+
+      let tableHTML = '<table><tr><th>السائق</th><th>رقم اللوحة</th><th>الهاتف</th></tr>';
+      driverData.forEach(driver => {
+        tableHTML += `<tr><td>${driver.name}</td><td>${driver.plate}</td><td><a href="tel:${driver.phone}" style="color:white">${driver.phone}</a></td></tr>`;
+      });
+      tableHTML += '</table>';
+
+      document.getElementById('drivers').innerHTML = tableHTML;
+    }
+
+    // Display drivers for a default area when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      showDrivers('التل');
+    });
+  </script>
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; 2024 U BUS. All Rights Reserved.
+</div>
+</body>
+
+</html>

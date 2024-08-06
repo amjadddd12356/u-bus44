@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  U BUS </title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>U Bus</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" alt="">
+            <span>
+             U BUS
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="s-1"> </span>
+            <span class="s-2"> </span>
+            <span class="s-3"> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item ">
+                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="TIME BUS INFORMATION .html">BUS TIME INFORMATION</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="INFORMATION OF BUS .html">BUS INFORMATION</a>
+                </li>
+               
+                <li class="nav-item">
+                  <a style="background-color: red;" class="nav-link" href="Log out.html">Log out </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  
+  <div id="bus-times">
+      <select onchange="showSchedule(this.value)">
+        <option value="">اختر المنطقة</option>
+        <option value="التل">التل</option>
+        <option value="جرمانا">جرمانا</option>
+        <option value="العدوي">العدوي</option>
+        <option value="جديدة عرطوز">جديدة عرطوز</option>
+        <option value="جسر الأبيض">جسر الأبيض</option>
+        <option value="جمرايا">جمرايا</option>
+        <option value="حاميش">حاميش</option>
+        <option value="زاهرة">زاهرة</option>
+        <option value="شارع بغداد">شارع بغداد</option>
+        <option value="ضاحيةالأسد">ضاحيةالأسد</option>
+        <option value="قدسيا">قدسيا</option>
+        <option value="قرى الأسد">قرى الأسد</option>
+        <option value="مالكي">مالكي</option>
+        <option value="مزة شيخ سعد">مزة شيخ سعد</option>
+        <option value="مساكن برزة">مساكن برزة</option>
+        <option value="مشروع دمر">مشروع دمر</option>
+        <option value="معضمية">معضمية</option>
+        <option value="مهاجرين">مهاجرين</option>
+        <option value="ميسات">ميسات</option>
+        <option value="مزة">مزة</option>
+        <!-- أضف المزيد من المناطق حسب الحاجة -->
+      </select>
+      
+  </div>
+  <div id="schedule" class="centered"></div>
+  <style>
+    table {
+        width: 80%;
+        max-width: 400px;
+        border-collapse: collapse;
+        margin: 20px auto; /* جعل الجدول يتمركز أفقياً ويضيف مسافة أعلى وأسفل */
+        margin-top: 100px;
+        background-color: rgba(0, 0, 0, 0.2); /* خلفية شفافة لتوضيح النص */ 
+        
+    }
+
+    th, td {
+      border: 2px solid #d8d4d4;
+      padding: 10px;
+      color: white;
+      
+    }
+  
+    th {
+        background-color: rgba(0, 0, 0, 0.4); /* خلفية شفافة لتوضيح النص */ ;
+      color: #d8d4d4;
+    }
+ 
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: url('bus3.png') no-repeat center center fixed;
+      background-size: cover;
+      color: white; /* لتتناسب النصوص مع الخلفية الداكنة */
+      /*overflow-x: hidden; /* Prevent horizontal scroll */
+      background: linear-gradient(135deg, #00407d, #294ec5); /* Gradient background */
+      height: 100vh;
+     /* display: flex;*/
+      justify-content: center;
+      align-items: center;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1; /* Ensure it is behind all content */
+    }
+    select {
+        background-color: #002547;
+        color: #d8d4d4;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 20px;
+    }
+    .centered {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+    }
+
+    @media screen and (max-width: 600px) {
+        select {
+            width: 90%;
+        }
+        table {
+            width: 90%;
+            
+        }
+        .centered {
+            height: auto;
+            padding: 20px 0;
+        }
+    }
+    .footer {
+            background-color: #002547;
+            text-align: center;
+            padding: 10px;
+            color: #d8d4d4;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+  </style>
+  <body class="sub_page">
+    <div id="particles-js"></div>
+  <script>
+    function showSchedule(location) {
+        const schedule = document.getElementById('schedule');
+        let tableHTML = '';
+        if (location === 'قدسيا') {
+            tableHTML = `
+            <table>
+              
+                <thead>
+                    <tr>
+                        <th colspan="2">قدسيا</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>6:45</td>
+                        <td>موقف الناحية</td>
+                    </tr>
+                    <tr>
+                        <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    </tr>
+                    <tr>
+                        <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'التل') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">التل</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>6:40</td>
+                        <td>موقف الوادي ساحة البانوراما</td>
+                    </tr>
+                    <tr>
+                        <td>6:50</td>
+                        <td>دوار معربا </td>
+                    </tr>
+                    <tr>
+                        <td>6:55</td>
+                        <td>مفرق برزة</td>
+                    </tr>
+                     <tr>
+                        <td>7:20</td>
+                        <td>نهر عيشة </td>
+                    </tr>
+                     <tr>
+                        <td>8:10</td>
+                        <td>الجامعة </td>
+                    </tr>
+                </tbody>
+            </table>`
+        } else if (location === 'جرمانا') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">جرمانا</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7:00</td>
+                        <td>مول جرمانا </td>
+                    </tr>
+                    <tr>
+                        <td>7:00</td>
+                        <td>مكتب فواز للنقل قبل ساحة الرئيس</td>
+                    </tr>
+                    <tr>
+                        <td>7:00</td>
+                        <td>ساحة السيوف</td>
+                    </tr>
+                     <tr>
+                        <td>7:20</td>
+                        <td>نهر عيشة </td>
+                    </tr>
+                     <tr>
+                        <td>8:10</td>
+                        <td>الجامعة </td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'العدوي') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4">العدوي</th>                        
+                    </tr>
+                    <tr>
+                         <th colspan="2"> رحلة ثانية</th>
+                        <th colspan="2"> رحلة اولى</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr>                      
+                         <td>9:00</td>
+                        <td>مفرق وزارة النفط </td>
+                         <td>7:00</td>
+                        <td>مفرق وزارة النفط </td>
+                    </tr>
+                    <tr>                       
+                         <td>9:00</td>
+                        <td> ساحة العباسيين</td>
+                         <td>7:00</td>
+                        <td> ساحة العباسيين</td>
+                    </tr>
+                    <tr>                    
+                         <td>9:05</td>
+                        <td>الزبلطاني</td>
+                         <td>7:05</td>
+                        <td>الزبلطاني</td>
+                    </tr>
+                      <tr>
+                         <td>9:05</td>
+                        <td>باب توما</td>
+                        <td>7:05</td>
+                        <td>باب توما</td>
+                    </tr>
+                      <tr>                      
+                         <td>9:10</td>
+                        <td>باب شرقي</td>
+                        <td>7:10</td>
+                        <td>باب شرقي</td>
+                    </tr>
+                      <tr>                      
+                         <td>9:10</td>
+                        <td>جامع بلال</td>
+                         <td>7:10</td>
+                        <td>جامع بلال</td>
+                    </tr>
+                      <tr>                      
+                         <td>9:20</td>
+                        <td>نهر عيشة</td>
+                         <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    </tr>
+                      <tr>                      
+                         <td>10:15</td>
+                        <td>الجامعة</td>
+                         <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'جديدة عرطوز') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4">جديدة عرطوز</th>
+                    </tr>
+                     <tr>
+                         <th colspan="2"> رحلة ثانية</th>
+                        <th colspan="2"> رحلة اولى</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr>                     
+                        <td>9:00</td>
+                        <td>موقف الفرن </td>
+                         <td>7:00</td>
+                        <td>موقف الفرن </td>
+                    </tr>
+                    <tr>                     
+                         <td>9:00</td>
+                        <td>مفرق الجديدة صحنايا</td>
+                         <td>7:05</td>
+                        <td>مفرق الجديدة صحنايا</td>
+                    </tr>
+                    <tr>                      
+                         <td>9:10</td>
+                        <td>صحنايا البريد</td>
+                         <td>7:10</td>
+                        <td>صحنايا البريد</td>
+                    </tr>
+                    <tr>                       
+                         <td>9:10</td>
+                        <td>موقف الكازية </td>
+                         <td>7:15</td>
+                        <td> موقف الكازية</td>
+                    </tr>
+                     <tr>                      
+                         <td>-</td>
+                        <td> ساحة الارزوني </td>
+                         <td>7:15</td>
+                        <td> ساحة الارزوني </td>
+                    </tr>
+                     <tr>                     
+                        <td>9:15</td>
+                        <td>  موقف الطيارة </td>
+                         <td>7:25</td>
+                        <td>  موقف الطيارة </td>
+                    </tr>
+                     <tr>                     
+                        <td>9:20</td>
+                        <td>  الجامع  </td>
+                         <td>7:30</td>
+                        <td>  الجامع  </td>
+                    </tr>
+                     <tr>                      
+                        <td>10:15</td>
+                        <td>  الجامعة  </td>
+                         <td>8:10</td>
+                        <td>  الجامعة </td>
+                    </tr>                 
+                </tbody>
+            </table>`;
+        } else if (location === 'جسر الأبيض') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">جسر الأبيض</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7:05</td>
+                        <td>الركن الفرنسي </td>
+                    </tr>
+                    <tr>
+                        <td>7:20</td>
+                        <td>نهر عيشة </td>
+                    </tr>
+                    <tr>
+                        <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'جمرايا') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">جمرايا</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>6:45</td>
+                        <td>جمرايا الحاجز </td>
+                    </tr>
+                    <tr>
+                        <td>6:50</td>
+                        <td>حاجز الرمال </td>
+                    </tr>
+                    <tr>
+                        <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    </tr>
+                    <tr>
+                        <td>8:10</td>
+                        <td>الجامعة </td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'حاميش') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4">حاميش</th>
+                    </tr>
+                     <tr>
+                         <th colspan="2"> رحلة ثانية</th>
+                        <th colspan="2"> رحلة اولى</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr>                      
+                         <td>9:00</td>
+                        <td>اشارة حاميش </td>
+                         <td>7:00</td>
+                        <td>اشارة حاميش </td>
+                    </tr>
+                    <tr>                      
+                         <td>9:00</td>
+                        <td>مول قاسيون </td>
+                         <td>7:05</td>
+                        <td>مول قاسيون </td>
+                    </tr>
+                    <tr>         
+                        <td>9:05</td>
+                        <td>ابن النفيس</td>
+                         <td>7:05</td>
+                        <td>ابن النفيس</td>
+                    </tr>
+                     <tr>                      
+                        <td>9:05</td>
+                        <td>جسر المشاة مدخل الهجرة </td>
+                         <td>7:10</td>
+                        <td>جسر المشاة مدخل الهجرة </td>
+                    </tr>
+                      <tr>                      
+                          <td>9:10</td>
+                        <td>مشفى الحياة </td>
+                         <td>7:15</td>
+                        <td>مشفى الحياة </td>
+                    </tr>
+                      <tr>                     
+                          <td>9:15</td>
+                        <td>اتحاد الفلاحين</td>
+                         <td>-</td>
+                        <td>اتحاد الفلاحين</td>
+                    </tr>
+                     <tr>                      
+                          <td>9:20</td>
+                        <td>نهر عيشة</td>
+                         <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    </tr>
+                     <tr>                       
+                          <td>10:15</td>
+                        <td>الجامعة</td>
+                         <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>                 
+                </tbody>
+            </table>`;
+        } else if (location === 'زاهرة') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4">زاهرة</th>
+                    </tr>
+                     <tr>
+                         <th colspan="2"> رحلة ثانية</th>
+                        <th colspan="2"> رحلة اولى</th>
+                        </tr>
+                </thead>
+                <tbody>
+                   <tr>                      
+                         <td>9:00</td>
+                        <td>زاهرة جديدة جسر المشاة  </td>
+                         <td>7:00</td>
+                        <td>زاهر جديدة جسر المشاة  </td>
+                    </tr>
+                    <tr>                       
+                         <td>9:05</td>
+                        <td>زاهرة جديدة الفرن الآلي  </td>
+                        <td>7:05</td>
+                        <td>زاهرة جديدة الفرن الآلي</td>
+                    </tr>
+                    <tr>                        
+                        <td>9:05</td>
+                        <td>مقابل جامع زين العابدين </td>
+                        <td>7:10</td>
+                        <td>مقابل جامع زين العابدين </td>
+                    </tr>
+                     <tr>                      
+                        <td>9:10</td>
+                        <td> جامع الحسن</td>
+                         <td>7:15</td>
+                        <td>جامع الحسن</td>
+                    </tr>
+                     <tr>                       
+                          <td>9:20</td>
+                        <td>نهر عيشة</td>
+                         <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    </tr>
+                     <tr>                       
+                          <td>10:15</td>
+                        <td>الجامعة</td>
+                         <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>                 
+                </tbody>
+            </table>`;
+        } else if (location === 'شارع بغداد') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">شارع بغداد</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7:00</td>
+                        <td>مقبرة الدحداح </td>
+                    </tr>
+                    <tr>
+                        <td>7:00</td>
+                        <td>اخر اشارة بشارع بغداد قبل ساحة التحرير </td>
+                    </tr>
+                    <tr>
+                        <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    </tr>
+                     <tr>
+                        <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'ضاحيةالأسد') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">ضاحيةالأسد</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>6:45</td>
+                        <td> دوار الدفاع الوطني </td>
+                    </tr>
+                    <tr>
+                        <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    </tr>
+                    <tr>
+                        <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'قرى الأسد') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4">قرى الأسد</th>
+                    </tr>
+                     <tr>
+                         <th colspan="2"> رحلة ثانية</th>
+                        <th colspan="2"> رحلة اولى</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr>                      
+                         <td>8:50</td>
+                        <td>موقف الكازية </td>
+                         <td>6:50</td>
+                        <td>موقف الكازية </td>
+                    </tr>
+                    <tr>                     
+                         <td>8:55</td>
+                        <td>الصبورة </td>
+                          <td>6:55</td>
+                        <td>الصبورة </td>
+                    </tr>
+                     <tr>                     
+                        <td>9:20</td>
+                        <td>نهر عيشة</td>
+                         <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    </tr>
+                    <tr>                      
+                         <td>10:15</td>
+                        <td>الجامعة</td>
+                         <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'مالكي') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4">مالكي</th>
+                    </tr>
+                     <tr>
+                         <th colspan="2"> رحلة ثانية</th>
+                        <th colspan="2"> رحلة اولى</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr>                       
+                         <td>9:00</td>
+                        <td>ساحة الروضة </td>
+                        <td>7:00</td>
+                        <td>ساحة الروضة </td>
+                    </tr>
+                     <tr>                      
+                        <td>9:05</td>
+                        <td> ساحة عدنان المالكي </td>
+                         <td>7:05</td>
+                        <td>ساحة عدنان المالكي </td>
+                    </tr>
+                    <tr>                      
+                        <td>9:20</td>
+                        <td>نهر عيشة</td>
+                         <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    </tr>
+                    <tr>                     
+                         <td>10:15</td>
+                        <td>الجامعة</td>
+                         <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'مزة شيخ سعد') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">مزة شيخ سعد</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7:00</td>
+                        <td>جامع الشيخ سعد </td>
+                    </tr>
+                    <tr>
+                        <td>7:00</td>
+                        <td>بناء 14 </td>
+                    </tr>
+                     <tr>
+                        <td>7:05</td>
+                        <td> اشارة الجلاء </td>
+                    </tr>
+                     <tr>
+                        <td>7:05</td>
+                        <td> مفرق تالة </td>
+                    </tr>
+                     <tr>
+                        <td>7:05</td>
+                        <td>اتصالات  </td>
+                    </tr>
+                    <tr>
+                        <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    <tr>
+                        <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'مساكن برزة') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">مساكن برزة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7:00</td>
+                        <td>مفرق مطعم الايمان </td>
+                    </tr>
+                    <tr>
+                        <td>7:00</td>
+                        <td>امية كلاس </td>
+                    </tr>
+                      <tr>
+                        <td>7:00</td>
+                        <td>مقابل جامع الحسنين  </td>
+                    </tr>                   
+                    <tr>
+                        <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    <tr>
+                        <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'مشروع دمر') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4">مشروع دمر </th>
+                    </tr>
+                     <tr>
+                         <th colspan="2"> رحلة ثانية</th>
+                        <th colspan="2"> رحلة اولى</th>
+                        </tr>
+                    <tr>                    
+                         <td>-</td>
+                        <td> ضاحية الزهور </td>
+                         <td>6:50</td>
+                        <td>ضاحية الزهور   </td>
+
+                    </tr>
+                    <tr>                     
+                         <td>8:55</td>
+                        <td> ضاحية قدسيا مقابل جامع الاحمد</td>
+                         <td>7:00</td>
+                        <td>  ضاحية قدسيا مقابل جامع الاحمد</td>
+                    </tr>
+                    <tr>                     
+                         <td>8:55</td>
+                        <td>مفرق جزيرة 16</td>
+                          <td>7:00</td>
+                        <td>مفرق جزيرة 16</td>
+                    </tr>
+                      <tr>                      
+                         <td>9:00</td>
+                        <td>دوار الكنيسة  </td>
+                         <td>7:05</td>
+                        <td>دوار الكنيسة </td>
+                    </tr>
+                      <tr>                     
+                         <td>9:00</td>
+                        <td>جزيرة10-7 </td>
+                         <td>7:05</td>
+                        <td>جزيرة 10-7 </td>
+                    </tr>
+                      <tr>                     
+                         <td>9:05</td>
+                        <td> القوس</td>
+                         <td>7:10</td>
+                        <td>القوس </td>
+                    </tr>
+                      <tr>                     
+                         <td>9:20</td>
+                        <td>نهر عيشة</td>
+                         <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    </tr>
+                      <tr>                     
+                         <td>10:15</td>
+                        <td>الجامعة</td>
+                          <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'معضمية') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">معضمية</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7:00</td>
+                        <td>دوار العلم </td>
+                    </tr>
+                    <tr>
+                        <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    <tr>
+                        <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'مهاجرين') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4">مهاجرين</th>
+                    </tr>
+                     <tr>
+                         <th colspan="2"> رحلة ثانية</th>
+                        <th colspan="2"> رحلة اولى</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr>                      
+                         <td>9:00</td>
+                        <td> حديقة النيربين</td>
+                        <td>7:05</td>
+                        <td> حديقة النيربين</td>
+                    </tr>
+                    <tr>                      
+                         <td>9:05</td>
+                        <td>الأمويين </td>
+                        <td>7:10</td>
+                        <td>الأمويين </td>
+                    </tr>
+                     <tr>                       
+                         <td>9:20</td>
+                        <td>نهر عيشة</td>
+                         <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    </tr>
+                      <tr>                      
+                         <td>10:15</td>
+                        <td>الجامعة</td>
+                         <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'ميسات') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4">ميسات</th>
+                    </tr>
+                     <tr>
+                         <th colspan="2"> رحلة ثانية</th>
+                        <th colspan="2"> رحلة اولى</th>
+                        </tr>
+                </thead>
+                <tbody>
+                   <tr>                      
+                         <td>-</td>
+                        <td>دوار ساحة شمدين </td>
+                         <td>7:00</td>
+                        <td>  دوار ساحة شمدين </td>
+
+                    </tr>
+                    <tr>                     
+                         <td>9:00</td>
+                        <td>  هشام سنان</td>.
+                         <td>7:00</td>
+                        <td>  هشام سنان</td>
+                    </tr>
+                    <tr>                      
+                         <td>9:05</td>
+                        <td>ساحة الميسات</td>
+                         <td>7:05</td>
+                        <td>ساحة الميسات</td>
+                    </tr>
+                      <tr>                     
+                         <td>9:05</td>
+                        <td> الشهبندر</td>
+                         <td>7:05</td>
+                        <td>الشهبندر </td>
+                    </tr>
+                      <tr>                      
+                         <td>9:10</td>
+                        <td>شارع 29 ايار </td>
+                        <td>7:10</td>
+                        <td> شارع 29 ايار</td>
+                    </tr>
+                      <tr>                      
+                         <td>9:15</td>
+                        <td> اتحاد الفلاحين</td>
+                         <td>7:10</td>
+                        <td> اتحاد الفلاحين</td>
+                    </tr>
+                      <tr>                     
+                         <td>9:20</td>
+                        <td>نهر عيشة</td>
+                         <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    </tr>
+                      <tr>                     
+                         <td>10:15</td>
+                        <td>الجامعة</td>
+                         <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        } else if (location === 'مزة') {
+            tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4">مزة</th>
+                    </tr>
+                     <tr>
+                         <th colspan="2"> رحلة ثانية</th>
+                        <th colspan="2"> رحلة اولى</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr>                     
+                         <td>9:00</td>
+                        <td>فندق الجلاء </td>
+                         <td>7:00</td>
+                        <td>   فندق الجلاء  </td>
+                    </tr>
+                    <tr>                     
+                         <td>9:00</td>
+                        <td> دار البعث</td>
+                          <td>7:00</td>
+                        <td>  دار البعث </td>
+                    </tr>
+                    <tr>                     
+                         <td>9:05</td>
+                        <td>الاتصالات </td>
+                         <td>7:05</td>
+                        <td>الاتصالات </td>
+                    </tr>
+                      <tr>                    
+                         <td>9:05</td>
+                        <td> دار المعلمين</td>
+                         <td>7:05</td>
+                        <td>دار المعلمين </td>
+                    </tr>
+                      <tr>                    
+                         <td>9:10</td>
+                        <td>بنك البركة   </td>
+                         <td>7:10</td>
+                        <td>  بنك البركة </td>
+                    </tr>
+                      <tr>                   
+                         <td>9:10</td>
+                        <td> شام سنتر </td>
+                          <td>7:10</td>
+                        <td> شام سنتر </td>
+                    </tr>
+                      <tr>                     
+                         <td>9:20</td>
+                        <td>نهر عيشة</td>
+                         <td>7:20</td>
+                        <td>نهر عيشة</td>
+                    </tr>
+                      <tr>                     
+                         <td>10:15</td>
+                        <td>الجامعة</td>
+                         <td>8:10</td>
+                        <td>الجامعة</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        }
+        schedule.innerHTML = tableHTML;
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      showSchedule('العدوي');
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // Initialize particles.js
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 6,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 400,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 0.8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+</script>
+<div class="footer">
+    &copy; 2024 U BUS. All Rights Reserved.
+</div>
+</body>
+</html>
